@@ -1,0 +1,14 @@
+function [w,d,allow_area]=next_point(n,point,B,rightInf,goal,DistMin)
+    j=1;
+    for i=1:length(B)
+        if 0<distance(n,point,B(i)) && distance(n,point,B(i))<=rightInf
+            d(j)=distance(n,point,B(i));
+            allow_area(j) = B(i);
+            j = j+1;
+        end
+    end
+    for l=1:length(allow_area)
+        dd(l)=distance(n,allow_area(l),goal);
+        w(l)=round(10*(DistMin-dd(l)));
+    end  
+end
